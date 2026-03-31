@@ -1,0 +1,101 @@
+1. Which linear regression training algorithm can you use if you have a
+training set with millions of features?
+
+Normal Eq -> too expensive
+Use GD(mini batch descent) or SGD
+
+Good models:
+Regularized linear models, prevent overfitting and cut out noise.
+
+2. Suppose the features in your training set have very different scales. Which
+algorithms might suffer from this, and how? What can you do about it?
+
+Gradient descent struggles because it takes steps based on feature values, large
+scale featuers can dominate.
+
+Fix: Feature Scaling(Standardization or Normalisation)
+
+
+3. Can gradient descent get stuck in a local minimum when training a logistic
+regression model?
+
+No. Logistic Regression has a convex loss function (bowl), GD always reaches bottom(min)
+
+
+4. Do all gradient descent algorithms lead to the same model, provided you let
+them run long enough?
+
+Yes, if loss is convex (only global min).
+No if loss is non convex.
+
+5. Suppose you use batch gradient descent and you plot the validation error at
+every epoch. If you notice that the validation error consistently goes up,
+what is likely going on? How can you fix this?
+
+Overfitting to training data. 
+Fix: Early Stopping, Regularization, Simpler model
+
+
+6. Is it a good idea to stop mini-batch gradient descent immediately when the
+validation error goes up?
+
+Mini-batch GD is noisy -> one increase doesnt indicate real overfitting.
+
+
+7. Which gradient descent algorithm (among those we discussed) will reach
+the vicinity of the optimal solution the fastest? Which will actually
+converge? How can you make the others converge as well?
+
+SGD makes quick noisy updates.
+Batch GD, smoother, slower, more stable path, exact convergence(optimal for convex).
+Mini-batch GD, Faster than batch, more stable than SGD
+
+Tactics for convergence:
+Learning rate decay
+
+
+8. Suppose you are using polynomial regression. You plot the learning curves
+and you notice that there is a large gap between the training error and the
+validation error. What is happening? What are three ways to solve this?
+
+Overfitting
+
+Fixes:
+Regularization
+Simpler model
+
+
+9. Suppose you are using ridge regression and you notice that the training
+error and the validation error are almost equal and fairly high. Would you
+say that the model suffers from high bias or high variance? Should you
+increase the regularization hyperparameter α or reduce it?
+
+High Bias(Underfitting), model is too Simpler
+
+Fix:
+Reduce(a) regularization strenght, model cant fit data well.
+
+10. Why would you want to use:
+a. Ridge regression instead of plain linear regression (i.e., without
+any regularization)?
+
+Reduce overfitting.
+
+b. Lasso instead of ridge regression?
+
+Lasso(L1) drives feature selection.(Many useless featuers)
+
+c. Elastic net instead of lasso regression?
+
+Elastic net is good when there are many correlated featuers. 
+L1(Lasso) will pick a feature randomly and kill the rest.
+L2(Ridge) helps spread weight across correlated featuers.
+Keeps groups of related features instead of picking one randomly
+
+11. Suppose you want to classify pictures as outdoor/indoor and
+daytime/nighttime. Should you implement two logistic regression classifiers
+or one softmax regression classifier?
+
+2 binary, softmax is for mutually exclusive.
+
+
