@@ -1,0 +1,48 @@
+1. What is the approximate depth of a decision tree trained (without restrictions)
+on a training set with one million instances?
+
+log₂(1,000,000) ≈ 20
+
+A balanced tree splits data roughly in half each level
+The tree keeps splitting until each leaf is pure (ideally one class)
+Each level halves the data → how many halvings until 1 sample?
+
+2. Is a node’s Gini impurity generally lower or higher than its parent’s? Is it
+generally lower/higher, or always lower/higher?
+
+Children nodes → generally lower impurity than parent
+But not always individually lower
+The algorithim minimizes weighted average impurity of children
+
+
+3. If a decision tree is overfitting the training set, is it a good idea to try
+decreasing max_depth?
+
+Yes, Reduce depth to generalise better.
+
+4. If a decision tree is underfitting the training set, is it a good idea to try scaling
+the input features?
+
+Not really, Scaling doesnt change split logic.
+Maybe more deptbh.
+
+5. If it takes one hour to train a decision tree on a training set containing one
+million instances, roughly how much time will it take to train another decision
+tree on a training set containing ten million instances? Hint: consider the
+CART algorithm’s computational complexity.
+
+log(m): depth, n: number of featuers, m: numer of samples
+At each level, it goes n featuers and checks across m samples(values)
+old cost: m n log(m)
+
+New cost:
+10m n log(10m)
+
+6. If it takes one hour to train a decision tree on a given training set, roughly how
+much time will it take if you double the number of features?
+
+old cost:m n log(m)
+
+new cost: m 2n log(m)
+
+2 hours.
