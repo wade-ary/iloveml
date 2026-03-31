@@ -1,0 +1,55 @@
+1. What are the main motivations for reducing a dataset’s
+dimensionality? What are the main drawbacks?
+
+Motivations: Remove noise(overfitting), Speed up training,
+Drawbacks: Loss of info, Reduced Interpretability
+
+2. What is the curse of dimensionality?
+
+Spcae grows exponentially, Data becomes sparse.
+Distance loses meaning.
+Need exponentially more data to cover space well.
+
+
+3. Once a dataset’s dimensionality has been reduced, is it possible to
+reverse the operation? If so, how? If not, why?
+
+Depends, but not perfectly. Reverse transforms are approximations.
+
+
+
+4. Can PCA be used to reduce the dimensionality of a highly
+nonlinear dataset?
+
+No.
+Highly non linear data -> curved structure PCA can not capture it well.
+
+
+5. Suppose you perform PCA on a 1,000-dimensional dataset, setting
+the explained variance ratio to 95%. How many dimensions will
+the resulting dataset have?
+
+Depends, 
+Highly redundant data -> few featuers
+Diverese data -> many featuers
+
+6. In what cases would you use regular PCA, incremental PCA,
+randomized PCA, or random projection?
+
+regular PCA: Data fits in memory, exact solution
+incremental PCA: Dataset is too large to fit in memory, need batches/streaming.
+randomized PCA: Dataset is large + high dimensional, Want faster approximate PCA
+random projection: Only care about distance preservation (not interpretability).
+
+7. How can you evaluate the performance of a dimensionality
+reduction algorithm on your dataset?
+
+Explained Variance(PCA): % of variance retained
+Reconstruction error: Project down → reconstruct → compare to original
+
+
+8. Does it make any sense to chain two different dimensionality
+reduction algorithms?
+
+Yes, Speed + Refinement
+Noise reduction first then second method captures the structure better.
