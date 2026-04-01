@@ -1,0 +1,77 @@
+3. Why is it generally preferable to use a logistic regression classifier
+rather than a classic perceptron (i.e., a single layer of threshold
+logic units trained using the perceptron training algorithm)? How
+can you tweak a perceptron to make it equivalent to a logistic
+regression classifier?
+
+perceptron is not diffrentiable -> limited learning.
+Tweak: replace step function with sigmoid
+
+4. Why was the sigmoid activation function a key ingredient in
+training the first MLPs?
+
+Sigmoid activation is diffrentiable(backpropagation) and Non linear(lets network learn complex patterns)
+
+5. Name three popular activation functions. Can you draw them?
+
+Sigmoid: S shape 1/1 + e^-z, 0 to 1
+TanH: S shape but -1 to 1, centered at 0
+ReLU: 0 for negative, linear for postive
+
+Suppose you have an MLP composed of one input layer with 10
+passthrough neurons, followed by one hidden layer with 50
+artificial neurons, and finally one output layer with 3 artificial
+neurons. All artificial neurons use the ReLU activation function.
+
+a. What is the shape of the input matrix X?
+
+(n, 10)
+
+b. What are the shapes of the hidden layer’s weight matrix
+Wh and bias vector bh?
+
+weight matrix (10, 50)
+bias matrix (1, 50)
+
+c. What are the shapes of the output layer’s weight matrix
+Wo and bias vector bo?
+
+weight: (50, 3)
+bias: (1, 3)
+
+d. What is the shape of the network’s output matrix Y?
+
+output: (n,3)
+
+e. Write the equation that computes the network’s output
+matrix Y as a function of X, Wh, bh, Wo, and bo.
+
+Y = (RelU(Wh(X) + bh))Wo + bo
+
+7. How many neurons do you need in the output layer if you want to
+classify email into spam or ham? What activation function should
+you use in the output layer? If instead you want to tackle MNIST,
+how many neurons do you need in the output layer, and which
+activation function should you use? What about for getting your
+network to predict housing prices, as in Chapter 2?
+
+Spam or ham: 1 output neutron, using sigmoid for probability.
+
+MNIST: 10 outputs (for each number 0-9), using softmax to combine them into probabilities.
+
+8. What is backpropagation and how does it work? What is the
+difference between backpropagation and reverse-mode autodiff?
+
+Computes gradients of the loss w.r.t. all weights by applying the chain rule backward through the network.
+
+backpropagation is the specific application of reverse-mode autodiff for neural networks.
+
+9. Can you list all the hyperparameters you can tweak in a basic
+MLP? If the MLP overfits the training data, how could you tweak
+these hyperparameters to try to solve the problem?
+
+Hyperparameters: Number of hidden layers, Number of neurons per layer, Activation Function, Learning rate,
+Optimizer, Regularisation, Droupout rate.
+
+How to reduce overfitting: reduce hidden layers, reduce number of neurons per layer, Regularisation, Droupout.
+
