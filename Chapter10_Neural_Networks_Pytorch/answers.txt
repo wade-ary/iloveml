@@ -1,0 +1,82 @@
+1. PyTorch is similar to NumPy is many ways, but it offers some
+extra features. Can you name the most important ones?
+
+GPU acceleration, Automatic Differentaion(Autograd)
+
+2. What is the difference between torch.exp() and
+torch.exp_(), or between torch.relu() and
+torch.relu_()?
+
+exp(), relu() -> returns new tensor, exp_(), relu_() -> modifies orignal
+
+3. What are two ways to create a new tensor on the GPU?
+
+directly on gpu, or cpu then move to gpu
+
+4. What are three ways to perform tensor computations without using
+autograd?
+
+Turns of automatic gradient calculation and tracking.
+no_grad, detatch tensor, requires_grad
+
+5. Will the following code cause a RuntimeError? What if you
+replace the second line with z = t.cos_().exp()? And what
+if you replace it with z = t.exp().cos_()?
+
+t = torch.tensor(2.0, requires_grad=True)
+z = t.cos().exp_()
+z.backward()
+
+Yes, exp_() and cos_() both modify in place and break the computation graph for backdrop.
+
+How about the following code, will it cause an error? And what if
+you replace the third line with w = v.cos_() * v.sin()?
+
+Will w have the same value in both cases?
+u = torch.tensor(2.0, requires_grad=True)
+v = u + 1
+w = v.cos() * v.sin_()
+w.backward()
+
+Yes in both becuase modifying in place causes backpropagation to fail.
+w doesnt have the same value because order matters
+
+
+6. Suppose you create a Linear(100, 200) module. How many
+neurons does it have? What is the shape of is weight and bias
+parameters? What input shape does it expect? What output shape
+does it produce?
+
+200 neurons, (n, 100) input (n,200) output
+
+7. What are the main steps of a PyTorch training loop?
+
+Forward pass, Loss calculation, Backprop, updates
+
+8. Why is it recommended to create the optimizer after the model is
+moved to the GPU?
+
+Optimizer must be created after moving model, so it tracks the correct (GPU) parameters.
+
+9. What DataLoader options should you generally set to speed up
+training when using a GPU?
+
+pin_memory, num_workers, Parallel loading + faster transfer.
+
+10. What are the main classification losses provided by PyTorch, and
+when should you use each of them?
+
+CrossEntropy → multiclass, BCEWithLogits → binary / multi-label
+
+11. Why is it important to call model.train() before training and
+model.eval() before evaluation?
+
+They switch the model’s behavior for training vs evaluation
+train() -> enables dropouts, batch normal updates.
+eval() -> no dropouts uses stored batch stats.
+
+
+12. What is the difference between torch.jit.trace() and
+torch.jit.script()?
+
+trace = record execution, script = understand code
