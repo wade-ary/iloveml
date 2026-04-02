@@ -1,0 +1,45 @@
+1. What is the problem that Glorot initialization and He initialization
+aim to fix?
+
+Vanishing/Exploding gradient.
+Glorot/He Choose initial weights so signal stays roughly same scale across layers
+
+2. Is it OK to initialize all the weights to the same value as long as
+that value is selected randomly using He initialization?
+
+No, All weights same -> every neuron learns the same things.
+
+3. Is it OK to initialize the bias terms to 0?
+
+Yes, because with different weights lead to differnet impact(gradient) of the bias.
+
+4. In which cases would you want to use each of the activation
+functions we discussed in this chapter?
+
+Leaky ReLU: when ReLU fails, neurons stuck at 0.
+ELU: Use when you want faster convergence than ReLU
+SELU: Use for self-normalizing networks
+GELU: Use in modern architectures (Transformers, etc.)
+Swish: Use when you want a smooth ReLU-like function
+Mish: Use for slightly better performance (sometimes)
+
+ReLU variants = stability, GELU/Swish/Mish = modern performance improvements
+
+5. What may happen if you set the momentum hyperparameter too
+close to 1 (e.g., 0.99999) when using an SGD optimizer?
+
+Too high momentum = unstable updates that overshoot and fail to converge
+
+6. Name three ways you can produce a sparse model.
+
+L1 Regularisation: pushes weights → exactly 0
+Pruning: remove small weights after training
+Sparse architectures: design model with limited connections
+
+7. Does dropout slow down training? Does it slow down inference
+(i.e., making predictions on new instances)? What about MC
+dropout?
+
+Training: Yes, model needs more iterations to converge.
+Inference: No, dropout is off.
+MC Droupout: Yes during inference due to multiple forward passes.

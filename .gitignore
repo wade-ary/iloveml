@@ -4,3 +4,4 @@ __pycache__/
 .ipynb_checkpoints/
 
 .DS_Store
+Chapter11_Deep_Neural_Networks/data
