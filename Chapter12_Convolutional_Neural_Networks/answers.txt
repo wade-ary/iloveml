@@ -1,0 +1,71 @@
+1. What are the advantages of a CNN over a fully connected DNN for image classi‐
+fication?
+
+CNNS: Preserve spatial relationships, fewer params (filters share weights), Better Featuer Hierarchy
+
+2. Consider a CNN composed of three convolutional layers, each with 3 × 3 kernels,
+a stride of 2, and "same" padding. The lowest layer outputs 100 feature maps, the
+middle one outputs 200, and the top one outputs 400. The input images are RGB
+images of 200 × 300 pixels.
+What is the total number of parameters in the CNN? If we are using 32-bit floats,
+at least how much RAM will this network require when making a prediction for a
+single instance? What about when training on a mini-batch of 50 images?
+
+Number of Params:
+Layer1: 3*3*3 =  27 + 1 = 28 * 100 = 2800
+Layer2: 3*3*100 = 900 + 1= 901*200 = 180200
+Layer3: 3*3*200 = 1800 + 1 = 1801*400 = 720400
+Total: 903400
+
+RAM for single instance:
+Layer1: 100 * 150 * 100 *4 = 6MB
+Layer2: 50*75*200*4= 3MB
+Layer3:25*28*400*4= 1.5mb
+
+During inference you need to keep about 2 consecutive layers in memory, then add params
+903,400 * 4 = 3.6MB
+
+total min = 12.6mb
+
+RAM for mini batch:
+forward pass = 10.52 * 50
+params: 3.6
+Total: 529.6
+
+
+
+
+3. If your GPU runs out of memory while training a CNN, what are five things you
+could try to solve the problem?
+
+Reduce Batch Size
+Reduce input image Size
+Smaller model(fewer layers)
+Mixed Precison
+Gradient checkpointing
+
+4. Why would you want to add a max pooling layer rather than a convolutional
+layer with the same stride?
+
+max pooling needs no weights, reduces overfitting, Strong invariance
+
+5. When would you want to add a local response normalization layer?
+Use LRN to boost strong activations and suppress weaker neighboring ones, though it’s mostly outdated today.
+
+6. Can you name the main innovations in AlexNet, compared to LeNet-5? What
+about the main innovations in GoogLeNet, ResNet, SENet, and Xception?
+
+AlexNet: ReLU, Dropouts, GPU training
+GoogLeNet: 1x1 conv for dimension reduction
+ResNet: Residuals
+SENet: Channel attention
+Xception: Depthwise separable convolutions
+
+7. What is a fully convolutional network? How can you convert a dense layer into a
+convolutional layer?
+
+FCN: only convolutional layers(no denser layers) outputs a spatial map instead of a single vector.
+User a Full size filter.
+
+8. What is the main technical difficulty of semantic segmentation?
+The main difficulty is making accurate pixel-level predictions while preserving spatial detail.
