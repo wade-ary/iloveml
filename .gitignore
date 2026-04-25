@@ -5,3 +5,4 @@ __pycache__/
 
 .DS_Store
 Chapter11_Deep_Neural_Networks/data
+Chapter13_Sequences_with_RNN_CNNs/jsb_chorales

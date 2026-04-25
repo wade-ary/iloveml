@@ -1,0 +1,40 @@
+1. Can you think of a few applications for a sequence-to-sequence RNN? What
+about a sequence-to-vector RNN, and a vector-to-sequence RNN?
+
+Sequence to Sequence: Speech to text
+Sequence to Vector: Next day weather prediction
+vector to Sequence: text generation
+
+2. How many dimensions must the inputs of an RNN layer have? What does each
+dimension represent? What about its outputs?
+
+3
+Batch size -> number of sequences
+time steps -> length of sequences
+featuers -> values at each step
+
+3(sequence) or 2(final)
+
+3. If you want to build a deep sequence-to-sequence RNN, which RNN layers
+should have return_sequences=True? What about a sequence-to-vector RNN?
+
+Sequence to Sequence: All
+Sequence to Vector: All except final output
+
+4. Suppose you have a daily univariate time series, and you want to forecast the next
+seven days. Which RNN architecture should you use?
+
+sequence to sequence
+
+5.What are the main difficulties when training RNNs? How can you handle them?
+
+Unstable gradients: LSTM GRU
+Short term memory problem: Attention
+Computational Cost: Truncated BPTT
+
+7. Why would you want to use 1D convolutional layers in an RNN?
+Use 1D conv layers to extract local patterns faster before the RNN processes the sequence.
+
+8. Which neural network architecture could you use to classify videos?
+
+CNN + RNN
